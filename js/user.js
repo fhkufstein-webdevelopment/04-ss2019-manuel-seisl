@@ -32,7 +32,9 @@ $(document).ready(function(){
 
         // Add user
 
-        $(userListBody).append(writeEntry(usersCnt + 1, username));
+        if (!checkIfUserExists(username)){
+            $(userListBody).append(writeEntry(usersCnt + 1, username));
+        };
 
         // Clear form field
 
@@ -140,6 +142,22 @@ $(document).ready(function(){
         $(userListBody).find("tr").each(function(index){
             $(this).find("td:first-child").text(index + 1);
         });
+    };
+
+    // Check if username is in list
+
+    function checkIfUserExists(username){
+
+        var exists = false;
+
+        $(userListBody).find("tr").each(function(){
+            if ($(this).find("td:nth-child(2)").text() === username){
+                exists = true;
+            };
+        });
+
+        return exists;
+
     };
 
 });
