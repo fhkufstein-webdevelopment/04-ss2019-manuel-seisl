@@ -27,13 +27,13 @@ $(document).ready(function(){
 
         // Get number of users and username
 
-        var usersCnt = $(userListBody).find("tr").length,
+        var usersCnt = userListBody.find("tr").length,
             username = $(this).find("input#username").first().val();
 
         // Add user
 
         if (!checkIfUserExists(username)){
-            $(userListBody).append(writeEntry(usersCnt + 1, username));
+            userListBody.append(writeEntry(usersCnt + 1, username));
         };
 
         // Clear form field
@@ -110,7 +110,7 @@ $(document).ready(function(){
 
         $(".removeModal").on("hidden.bs.modal", function(e){
             $(".removeModal").remove();
-            $(userListBody).find("tr").removeClass("delete");
+            userListBody.find("tr").removeClass("delete");
         });
 
         // Show event from modal
@@ -121,7 +121,7 @@ $(document).ready(function(){
 
             $(".removeModal").on("click", ".removeTrigger", function(){
 
-                $(userListBody).find("tr.delete").remove();
+                userListBody.find("tr.delete").remove();
 
                 // Hide modal
 
@@ -139,7 +139,7 @@ $(document).ready(function(){
     // Update entries index
 
     function updateEntriesIndex(){
-        $(userListBody).find("tr").each(function(index){
+        userListBody.find("tr").each(function(index){
             $(this).find("td:first-child").text(index + 1);
         });
     };
@@ -150,7 +150,7 @@ $(document).ready(function(){
 
         var exists = false;
 
-        $(userListBody).find("tr").each(function(){
+        userListBody.find("tr").each(function(){
             if ($(this).find("td:nth-child(2)").text() === username){
                 exists = true;
             };
